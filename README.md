@@ -13,3 +13,7 @@
 ## Project structure
 
 Coming soon
+
+## Start up
+
+1) **make up**
