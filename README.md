@@ -16,4 +16,12 @@ Coming soon
 
 ## Start up
 
-1) **make up**
+1) Launching the application container and database
+```bash 
+make up
+```
+
+2) Add admins 
+```bash 
+make seed
+```
