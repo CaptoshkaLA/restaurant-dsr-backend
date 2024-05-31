@@ -25,3 +25,14 @@ make up
 ```bash 
 make seed
 ```
+
+## Docker Hub Mirrors
+Зеркала для доступа к Docker Hub 
+<br>
+<br>
+**Settings -> Docker Engine -> Add "registry-mirrors" -> Apply & restart**
+```
+{
+    "registry-mirrors": [ "https://mirror.gcr.io/", "https://dockerhub.timeweb.cloud/"]
+}
+```
