@@ -1,10 +1,14 @@
 import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcrypt';
+import crypto from 'crypto';
 
 const prisma = new PrismaClient();
+/*
+Убрал bcrypt, т.к. при хешировании пароля падала ошибка: Segmentation fault
+Переделал под хеширование пароля вручную
+ */
 
 async function main() {
-  const hashedPassword = await bcrypt.hash('admin', 10);
+  let hashedPassword = crypto.createHash('sha256').update('admin').digest('hex');
 
   await prisma.user.createMany({
     data: [
@@ -15,10 +19,10 @@ async function main() {
 }
 
 main()
-  .catch(e => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+    .catch(e => {
+      console.error(e);
+      process.exit(1);
+    })
+    .finally(async () => {
+      await prisma.$disconnect();
+    });

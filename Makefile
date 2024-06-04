@@ -8,10 +8,10 @@ logs:
 	docker-compose logs -f
 
 prisma:
-	docker-compose run app npx prisma generate
+	docker-compose exec app npx prisma generate
 
 migrate:
-	docker-compose run app npx prisma migrate dev
+	docker-compose exec app npx prisma migrate dev
 
 seed:
-	docker-compose run app npx ts-node prisma/seed.ts
+	docker-compose exec app npx ts-node prisma/seed.ts

@@ -7,7 +7,7 @@ export const getMenu = async (req: Request, res: Response) => {
     const menu = await dishService.getMenu();
     res.json(menu);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch menu' });
+    res.status(500).json({ error: 'Не удалось загрузить меню' });
   }
 };
 
