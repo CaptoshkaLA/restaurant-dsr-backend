@@ -26,6 +26,14 @@ make up
 make seed
 ```
 
+**Seeders:**
+<br>
+
+| email                   | password |
+|-------------------------|----------|
+| admin@example.com       | admin    |
+| antonlisovsky@gmail.com | admin    |
+
 ## Docker Hub Mirrors
 Зеркала для доступа к Docker Hub 
 <br>
