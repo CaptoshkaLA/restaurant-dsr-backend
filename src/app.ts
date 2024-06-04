@@ -6,10 +6,14 @@ import bodyParser from 'body-parser';
 import authRoutes from './routes/authRoutes';
 import reservationRoutes from './routes/reservationRoutes';
 import dishRoutes from './routes/dishRoutes';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+import swaggerOptions from './swaggerConfig';
 
 const app = express();
 // const prisma = new PrismaClient();
 dotenv.config();
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -17,6 +21,7 @@ app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/dishes', dishRoutes);
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // const errorHandler: ErrorRequestHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
 //   console.error(err.stack);

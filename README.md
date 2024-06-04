@@ -54,3 +54,11 @@ sudo ss -lptn 'sport = :5432'
 ```
 kill <pid>
 ```
+
+## Swagger
+
+URL:
+<br>
+```
+localhost:4000/api/docs
+```
