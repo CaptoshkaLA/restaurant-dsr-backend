@@ -9,7 +9,7 @@ export const createReservation = async (req: Request, res: Response) => {
     const reservation = await reservationService.createReservation(reservationDTO);
     res.status(201).json(reservation);
   } catch (error) {
-    res.status(500).json({ error: 'Не удалось создать резерв' });
+    res.status(500).json({ error: 'Failed to create reservation' });
   }
 };
 
@@ -18,7 +18,7 @@ export const getReservations = async (req: Request, res: Response) => {
     const reservations = await reservationService.getReservations();
     res.json(reservations);
   } catch (error) {
-    res.status(500).json({ error: 'Не удалось получить резерв' });
+    res.status(500).json({ error: 'Failed to fetch reservations' });
   }
 };
 
@@ -30,6 +30,6 @@ export const updateReservationStatus = async (req: Request, res: Response) => {
     const reservation = await reservationService.updateReservationStatus(Number(id), statusDTO);
     res.json(reservation);
   } catch (error) {
-    res.status(500).json({ error: 'Не удалось обновить статус резерва' });
+    res.status(500).json({ error: 'Failed to update reservation status' });
   }
 };

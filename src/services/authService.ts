@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET;
 
 if (!JWT_SECRET) {
-  throw new Error('JWT_SECRET не задан');
+  throw new Error('JWT_SECRET is not defined');
 }
 
 /*
@@ -19,7 +19,7 @@ export const login = async ({ email, password }: LoginDTO): Promise<AuthResponse
   const user = await prisma.user.findUnique({ where: { email } });
   let hashedPassword = crypto.createHash('sha256').update(password).digest('hex')
   if (!user || !(hashedPassword == user.password) || user.role !== 'ADMIN') {
-    throw new Error('Некорректный email или пароль');
+    throw new Error('Invalid email or password');
   }
 
   const token = jwt.sign({ userId: user.id, role: user.role }, JWT_SECRET, { expiresIn: '1h' });

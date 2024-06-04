@@ -12,7 +12,7 @@ export const login = async (req: Request, res: Response) => {
     if (error instanceof Error) {
       res.status(401).json({ error: error.message });
     } else {
-      res.status(401).json({ error: '401 (Unauthorized)' });
+      res.status(401).json({ error: 'Invalid email or password' });
     }
   }
 };

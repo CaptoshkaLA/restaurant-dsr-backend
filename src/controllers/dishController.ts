@@ -7,7 +7,7 @@ export const getMenu = async (req: Request, res: Response) => {
     const menu = await dishService.getMenu();
     res.json(menu);
   } catch (error) {
-    res.status(500).json({ error: 'Не удалось загрузить меню' });
+    res.status(500).json({ error: 'Failed to load menu' });
   }
 };
 
@@ -18,7 +18,7 @@ export const addDish = async (req: Request, res: Response) => {
     const dish = await dishService.addDish(dishDTO);
     res.status(201).json(dish);
   } catch (error) {
-    res.status(500).json({ error: 'Не удалось создать блюдо' });
+    res.status(500).json({ error: 'Failed to create dish' });
   }
 };
 
@@ -30,7 +30,7 @@ export const updateDish = async (req: Request, res: Response) => {
     const dish = await dishService.updateDish(Number(id), dishDTO);
     res.json(dish);
   } catch (error) {
-    res.status(500).json({ error: 'Не удалось обновить блюдо' });
+    res.status(500).json({ error: 'Failed to update dish' });
   }
 };
 
@@ -41,6 +41,6 @@ export const deleteDish = async (req: Request, res: Response) => {
     await dishService.deleteDish(Number(id));
     res.status(204).send();
   } catch (error) {
-    res.status(500).json({ error: 'Не удалось удалить блюдо'});
+    res.status(500).json({ error: 'Failed to delete dish'});
   }
 };
