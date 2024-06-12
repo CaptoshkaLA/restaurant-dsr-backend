@@ -26,7 +26,7 @@ const router = express.Router();
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/CreateDishDTO'
- *        500:
+ *       500:
  *         description: Failed to load menu
  */
 router.get('/', getMenu);

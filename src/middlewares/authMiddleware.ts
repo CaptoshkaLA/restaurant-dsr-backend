@@ -29,6 +29,7 @@ export const verifyAdmin = (req: AuthenticatedRequest, res: Response, next: Next
     (req as AuthenticatedRequest).user = decoded;
     next();
   } catch (error) {
+    console.log('Token verification failed:', error);
     res.status(401).json({ error: '401 Unauthorized' });
   }
 };
