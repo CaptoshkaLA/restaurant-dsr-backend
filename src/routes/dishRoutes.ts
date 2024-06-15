@@ -52,6 +52,8 @@ router.get('/', getMenu);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/CreateDishDTO'
+ *       401:
+ *         description: Unauthorized, invalid or missing token
  *       500:
  *         description: Failed to create dish
  */
@@ -84,6 +86,8 @@ router.post('/', verifyAdmin, addDish);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/CreateDishDTO'
+ *       401:
+ *         description: Unauthorized, invalid or missing token
  *       500:
  *         description: Failed to update dish
  */
@@ -106,6 +110,8 @@ router.put('/:id', verifyAdmin, updateDish);
  *     responses:
  *       204:
  *         description: Dish deleted
+ *       401:
+ *         description: Unauthorized, invalid or missing token
  *       500:
  *         description: Failed to delete dish
  */

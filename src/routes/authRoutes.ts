@@ -30,7 +30,16 @@ const router = express.Router();
  *             schema:
  *               $ref: '#/components/schemas/AuthResponseDTO'
  *       401:
- *         description: Invalid email or password
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Invalid email or password
+
  */
 router.post('/login', login);
 

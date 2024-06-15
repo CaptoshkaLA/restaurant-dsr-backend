@@ -30,6 +30,8 @@ const router = express.Router();
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/CreateReservationDTO'
+ *       401:
+ *         description: Unauthorized, invalid or missing token
  *       500:
  *         description: Failed to create reservation
  */
@@ -52,6 +54,8 @@ router.post('/', createReservation);
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/CreateReservationDTO'
+ *       401:
+ *         description: Unauthorized, invalid or missing token
  *       500:
  *         description: Failed to fetch reservations
  */
@@ -84,6 +88,8 @@ router.get('/', verifyAdmin, getReservations);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/CreateReservationDTO'
+ *       401:
+ *         description: Unauthorized, invalid or missing token
  *       500:
  *         description: Failed to update reservation status
  */
