@@ -11,6 +11,20 @@ export const getMenu = async (req: Request, res: Response) => {
   }
 };
 
+export const getDish = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const dish = await dishService.getDish(Number(id));
+    if (dish) {
+      res.json(dish);
+    } else {
+      res.status(404).json({ error: 'Dish not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to load dish' });
+  }
+};
+
 export const addDish = async (req: Request, res: Response) => {
   const dishDTO: CreateDishDTO = req.body;
 

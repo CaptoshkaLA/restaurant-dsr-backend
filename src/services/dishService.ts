@@ -7,6 +7,12 @@ export const addDish = async (data: CreateDishDTO) => {
   return await prisma.dish.create({ data });
 };
 
+export const getDish = async (id: number) => {
+  return await prisma.dish.findUnique({
+    where: { id },
+  });
+};
+
 export const updateDish = async (id: number, data: UpdateDishDTO) => {
   return await prisma.dish.update({
     where: { id },

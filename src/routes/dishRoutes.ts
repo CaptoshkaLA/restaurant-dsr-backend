@@ -1,5 +1,5 @@
 import express from 'express';
-import { getMenu, addDish, updateDish, deleteDish } from '../controllers/dishController';
+import { getMenu, addDish, updateDish, deleteDish, getDish } from '../controllers/dishController';
 import { verifyAdmin } from '../middlewares/authMiddleware';
 
 const router = express.Router();
@@ -30,6 +30,32 @@ const router = express.Router();
  *         description: Failed to load menu
  */
 router.get('/', getMenu);
+
+/**
+ * @swagger
+ * /dishes/{id}:
+ *   get:
+ *     summary: Get a single dish by id
+ *     tags: [Dishes]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Dish found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/CreateDishDTO'
+ *       404:
+ *         description: Dish not found
+ *       500:
+ *         description: Failed to load dish
+ */
+router.get('/:id', getDish);
 
 /**
  * @swagger
