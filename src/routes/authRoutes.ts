@@ -1,5 +1,6 @@
 import express from 'express';
-import { login } from '../controllers/authController';
+import { login, refreshToken } from '../controllers/authController';
+import { verifyAdmin } from '../middlewares/authMiddleware';
 
 const router = express.Router();
 
@@ -42,5 +43,6 @@ const router = express.Router();
 
  */
 router.post('/login', login);
+router.post('/refresh-token', verifyAdmin, refreshToken);
 
 export default router;

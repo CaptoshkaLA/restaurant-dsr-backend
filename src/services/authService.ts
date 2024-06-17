@@ -25,3 +25,18 @@ export const login = async ({ email, password }: LoginDTO): Promise<AuthResponse
   const token = jwt.sign({ userId: user.id, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
   return { token };
 };
+
+export const refreshToken = async (refreshToken: string): Promise<AuthResponseDTO> => {
+  try {
+    const decoded = jwt.verify(refreshToken, JWT_SECRET) as { userId: number, role: string };
+    const user = await prisma.user.findUnique({ where: { id: decoded.userId } });
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    const newAccessToken = jwt.sign({ userId: user.id, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
+    return { token: newAccessToken };
+  } catch (error) {
+    throw new Error('Invalid token');
+  }
+};
