@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import * as reservationService from '../services/reservationService';
-import { CreateReservationDTO, UpdateReservationStatusDTO } from '../dtos/reservationDTO';
+import { CreateReservationDTO, UpdateReservationStatusDTO, UpdateReservationDateTimeDTO } from '../dtos/reservationDTO';
 
 export const createReservation = async (req: Request, res: Response) => {
   const reservationDTO: CreateReservationDTO = req.body;
@@ -31,5 +31,17 @@ export const updateReservationStatus = async (req: Request, res: Response) => {
     res.json(reservation);
   } catch (error) {
     res.status(500).json({ error: 'Failed to update reservation status' });
+  }
+};
+
+export const updateReservationDateTime = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const dateTimeDTO: UpdateReservationDateTimeDTO = req.body;
+
+  try {
+    const reservation = await reservationService.updateReservationDateTime(Number(id), dateTimeDTO);
+    res.json(reservation);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update reservation date and time' });
   }
 };

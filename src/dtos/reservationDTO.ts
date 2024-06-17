@@ -48,3 +48,8 @@ export interface CreateReservationDTO {
 export interface UpdateReservationStatusDTO {
   status: 'PENDING' | 'CONFIRMED' | 'REJECTED';
 }
+
+export interface UpdateReservationDateTimeDTO {
+  date: string;
+  time: string;
+}

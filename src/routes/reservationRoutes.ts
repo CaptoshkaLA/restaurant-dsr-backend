@@ -1,5 +1,5 @@
 import express from 'express';
-import { createReservation, getReservations, updateReservationStatus } from '../controllers/reservationController';
+import { createReservation, getReservations, updateReservationStatus, updateReservationDateTime } from '../controllers/reservationController';
 import { verifyAdmin } from '../middlewares/authMiddleware';
 
 const router = express.Router();
@@ -94,5 +94,39 @@ router.get('/', verifyAdmin, getReservations);
  *         description: Failed to update reservation status
  */
 router.put('/:id/status', verifyAdmin, updateReservationStatus);
+
+/**
+ * @swagger
+ * /reservations/{id}/datetime:
+ *   put:
+ *     summary: Update reservation date and time
+ *     tags: [Reservations]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/UpdateReservationDateTimeDTO'
+ *     responses:
+ *       200:
+ *         description: Reservation date and time updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/CreateReservationDTO'
+ *       401:
+ *         description: Unauthorized, invalid or missing token
+ *       500:
+ *         description: Failed to update reservation date and time
+ */
+router.put('/:id/datetime', verifyAdmin, updateReservationDateTime);
 
 export default router;

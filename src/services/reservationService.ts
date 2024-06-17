@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { CreateReservationDTO, UpdateReservationStatusDTO } from '../dtos/reservationDTO';
+import { CreateReservationDTO, UpdateReservationStatusDTO, UpdateReservationDateTimeDTO } from '../dtos/reservationDTO';
 
 const prisma = new PrismaClient();
 
@@ -21,5 +21,15 @@ export const updateReservationStatus = async (id: number, { status }: UpdateRese
   return await prisma.reservation.update({
     where: { id },
     data: { status },
+  });
+};
+
+export const updateReservationDateTime = async (id: number, { date, time }: UpdateReservationDateTimeDTO) => {
+  return await prisma.reservation.update({
+    where: { id },
+    data: {
+      date: new Date(date),
+      time: new Date(time),
+    },
   });
 };
