@@ -46,5 +46,5 @@ export interface CreateReservationDTO {
 }
 
 export interface UpdateReservationStatusDTO {
-  status: 'PENDING' | 'PROCESSED';
+  status: 'PENDING' | 'CONFIRMED' | 'REJECTED';
 }
