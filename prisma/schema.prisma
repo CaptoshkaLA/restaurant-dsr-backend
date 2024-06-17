@@ -11,16 +11,16 @@ datasource db {
 
 model User {
   id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
+  email     String   @unique @db.VarChar(255)
+  password  String   @db.VarChar(64)
   role      Role
 }
 
 model Reservation {
   id         Int      @id @default(autoincrement())
-  name       String
-  email      String
-  phone      String
+  name       String   @db.VarChar(64)
+  email      String   @db.VarChar(255)
+  phone      String   @db.VarChar(32)
   date       DateTime
   time       DateTime
   guests     Int
@@ -28,13 +28,13 @@ model Reservation {
 }
 
 model Dish {
-  id            Int      @id @default(autoincrement())
-  name          String
-  description   String
-  shortDescription String
-  recipe        String
-  ingredients   String
-  imageUrl      String
+  id               Int       @id @default(autoincrement())
+  name             String    @db.VarChar(1024)
+  description      String    @db.VarChar(1024)
+  shortDescription String    @db.VarChar(1024)
+  recipe           String    @db.VarChar(1024)
+  ingredients      String    @db.VarChar(1024)
+  imageUrl         String    @db.VarChar(1024)
 }
 
 enum Role {
